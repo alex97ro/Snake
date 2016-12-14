@@ -35,8 +35,10 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="include/harta.h" />
+		<Unit filename="include/sarpe.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/harta.cpp" />
+		<Unit filename="src/sarpe.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

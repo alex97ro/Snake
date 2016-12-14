@@ -2,6 +2,7 @@
 #define HARTA_H
 #include <iostream>
 #include <stdlib.h>
+#include "sarpe.h"
 using namespace std;
 class harta
 {
@@ -13,6 +14,7 @@ class harta
 
         void afisare()
         {
+
             system("cls");
           for(unsigned short i=0;i<lungime;i++)
           {

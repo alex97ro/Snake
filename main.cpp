@@ -19,8 +19,7 @@ int main()
     bool joc_in_desfasurare;
 
     harta harta1;
-int i=getch();
-cout<<i;
+
 while(1){
         switch (getch())
             {
