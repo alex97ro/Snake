@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <conio.h>
 #include <windows.h>
-<<<<<<< HEAD
 using namespace std;
 
 char harta[100][100];
@@ -44,31 +43,11 @@ int main()
     char joc_nou[10]="JOC NOU",tabel[10]="TABEL",iesire[10]="IESIRE";
     unsigned pozitie=0;
     bool joc_in_desfasurare;
-=======
-#include "harta.h"
-using namespace std;
-
-int main()
-{
-
-
-    char joc_nou[10]="JOC NOU",tabel[10]="TABEL",iesire[10]="IESIRE";
->>>>>>> 8aff7149edb324fbc60012cfadac250b6805a98a
     cout<<"  >"<<joc_nou<<"<  "<<endl;
     cout<<"   "<<tabel<<"   "<<endl;
     cout<<"   "<<iesire<<"   ";
 
-<<<<<<< HEAD
 while(1)
-=======
-    unsigned short pozitie=0,viteza_joc;
-
-    bool joc_in_desfasurare;
-
-    harta harta1;
-
-while(1){
->>>>>>> 8aff7149edb324fbc60012cfadac250b6805a98a
         switch (getch())
             {
 
@@ -128,7 +107,6 @@ while(1){
             }
             break;
 
-<<<<<<< HEAD
            case 122:
             switch(pozitie)
             {
@@ -151,13 +129,3 @@ while(1){
 return 0;
 }
 
-=======
-           case 104:
-            if(pozitie==0)harta1.afisare();
-            break;
-
-    }
-}
-
-}
->>>>>>> 8aff7149edb324fbc60012cfadac250b6805a98a

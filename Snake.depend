@@ -20,3 +20,17 @@
 	"sarpe.h"
 	<stdlib.h>
 
+1481681704 source:c:\users\alex\desktop\snake-master\src\harta.cpp
+	"harta.h"
+
+1481681704 c:\users\alex\desktop\snake-master\include\harta.h
+	<iostream>
+	<stdlib.h>
+	"sarpe.h"
+
+1481681704 c:\users\alex\desktop\snake-master\include\sarpe.h
+
+1481681704 source:c:\users\alex\desktop\snake-master\src\sarpe.cpp
+	"sarpe.h"
+	<stdlib.h>
+
