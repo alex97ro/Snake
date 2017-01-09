@@ -34,9 +34,11 @@
 	"sarpe.h"
 	<stdlib.h>
 
-1483994424 source:c:\users\alex\desktop\snake-master\main.cpp
+1484000804 source:c:\users\alex\desktop\snake-master\main.cpp
 	<iostream>
 	<stdlib.h>
 	<conio.h>
 	<windows.h>
+	<stdlib.h>
+	<stdio.h>
 

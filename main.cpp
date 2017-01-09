@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <conio.h>
 #include <windows.h>
+#include <stdlib.h>
+#include <stdio.h>
 using namespace std;
 struct sarpe
 {
@@ -9,7 +11,8 @@ struct sarpe
 
 }componente[100];
 char harta[100][100];
-int n=20,lungime_sarpe;
+int n=20,lungime_sarpe,coord_fruct1,coord_fruct2;
+bool joc_in_desfasurare;
 void harta_init()
 {
     int i,j;
@@ -40,6 +43,7 @@ void harta_init()
 }
 void muta_componentele(int x,int y)
 {
+    if(harta[x][y]=='o')joc_in_desfasurare=false;
     int i;
     for(i=n;i>1;i--)
     {
@@ -57,6 +61,7 @@ void harta_update()
        harta[i][j]=' ';
        for(i=1;i<=lungime_sarpe;i++)
         harta[componente[i].x][componente[i].y]='o';
+        harta[coord_fruct1][coord_fruct2]='1';
 }
 void harta_afisare()
 {
@@ -73,12 +78,11 @@ int main()
 {
     char joc_nou[10]="JOC NOU",tabel[10]="TABEL",iesire[10]="IESIRE";
     unsigned short pozitie=0,directie=0;
-    bool joc_in_desfasurare;
     cout<<"  >"<<joc_nou<<"<  "<<endl;
     cout<<"   "<<tabel<<"   "<<endl;
     cout<<"   "<<iesire<<"   ";
 
-while(1)
+while(1)if(kbhit())
         switch (getch())
             {
 
@@ -146,10 +150,17 @@ while(1)
 
             joc_in_desfasurare=true;
 
-            harta_init();
+            directie=0;
 
+            bool fruct_mancat=false;
+
+            coord_fruct1=rand()%(n-1)+1;
+            coord_fruct2=rand()%(n-1)+1;
+
+            harta_init();
             while(joc_in_desfasurare)
             {
+                int aux1=componente[lungime_sarpe].x,aux2=componente[lungime_sarpe].y;
                 //system("cls");
                 HANDLE hOut;
 	COORD Position;
@@ -174,7 +185,7 @@ while(1)
                case 100:
                 if(directie==2||directie==3)directie=1;break;
                 }
-                   else switch(directie)
+                    switch(directie)
                 {
                 case 0:
 
@@ -200,10 +211,21 @@ while(1)
                     else muta_componentele(componente[1].x+1,componente[1].y);
                     break;
                 }
+            if(componente[1].x==coord_fruct1&&componente[1].y==coord_fruct2)
+            {
+                lungime_sarpe++;
 
+                componente[lungime_sarpe].x=aux1;
+                componente[lungime_sarpe].y=aux2;
+
+                coord_fruct1=rand()%(n-1)+1;
+                coord_fruct2=rand()%(n-1)+1;
+            }
              harta_update();
              harta_afisare();
+             Sleep(70);
             }
+            system("cls");
             break;
 
 }
