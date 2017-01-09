@@ -150,8 +150,59 @@ while(1)
 
             while(joc_in_desfasurare)
             {
+                //system("cls");
+                HANDLE hOut;
+	COORD Position;
+
+	hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	Position.X = 0;
+	Position.Y = 0;
+	SetConsoleCursorPosition(hOut, Position);
+                if(kbhit())
+                switch(getch())
+                {
+               case 119:
+                if(directie==0||directie==1)directie=2;break;
+
+               case 115:
+                if(directie==0||directie==1)directie=3;break;
+
+               case 97:
+                if(directie==2||directie==3)directie=0;break;
+
+               case 100:
+                if(directie==2||directie==3)directie=1;break;
+                }
+                   else switch(directie)
+                {
+                case 0:
+
+                    if(componente[1].y==2)muta_componentele(componente[1].x,n-1);
+                    else muta_componentele(componente[1].x,componente[1].y-1);
+                    break;
+
+                case 1:
+
+                    if(componente[1].y==n-1)muta_componentele(componente[1].x,2);
+                    else muta_componentele(componente[1].x,componente[1].y+1);
+                    break;
+
+                case 2:
+
+                    if(componente[1].x==2)muta_componentele(n-1,componente[1].y);
+                    else muta_componentele(componente[1].x-1,componente[1].y);
+                    break;
+
+                case 3:
+
+                    if(componente[1].x==n-1)muta_componentele(2,componente[1].y);
+                    else muta_componentele(componente[1].x+1,componente[1].y);
+                    break;
+                }
+
+             harta_update();
              harta_afisare();
-             system("cls");
             }
             break;
 
