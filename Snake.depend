@@ -1,0 +1,22 @@
+# depslib dependency file v1.0
+1481666350 source:e:\snake\snake\main.cpp
+	<iostream>
+	<stdlib.h>
+	<conio.h>
+	<windows.h>
+	"harta.h"
+
+1481665142 source:e:\snake\snake\src\harta.cpp
+	"harta.h"
+
+1481717590 e:\snake\snake\include\harta.h
+	<iostream>
+	<stdlib.h>
+	"sarpe.h"
+
+1481717558 e:\snake\snake\include\sarpe.h
+
+1481717656 source:e:\snake\snake\src\sarpe.cpp
+	"sarpe.h"
+	<stdlib.h>
+
