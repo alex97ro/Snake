@@ -11,7 +11,7 @@ struct sarpe
 
 }componente[100];
 char harta[100][100];
-int n=20,lungime_sarpe,coord_fruct1,coord_fruct2;
+int n=20,lungime_sarpe,coord_fruct1,coord_fruct2,scor;
 bool joc_in_desfasurare;
 void harta_init()
 {
@@ -61,7 +61,7 @@ void harta_update()
        harta[i][j]=' ';
        for(i=1;i<=lungime_sarpe;i++)
         harta[componente[i].x][componente[i].y]='o';
-        harta[coord_fruct1][coord_fruct2]='1';
+        harta[coord_fruct1][coord_fruct2]='$';
 }
 void harta_afisare()
 {
@@ -72,6 +72,7 @@ void harta_afisare()
             cout<<harta[i][j];
         cout<<endl;
     }
+    cout<<"scor:"<<scor<<" || "<<"lungime:"<<lungime_sarpe;
 
 }
 int main()
@@ -152,6 +153,8 @@ while(1)if(kbhit())
 
             directie=0;
 
+            scor=0;
+
             bool fruct_mancat=false;
 
             coord_fruct1=rand()%(n-1)+1;
@@ -215,11 +218,13 @@ while(1)if(kbhit())
             {
                 lungime_sarpe++;
 
-                componente[lungime_sarpe].x=aux1;
-                componente[lungime_sarpe].y=aux2;
+                scor++;
 
-                coord_fruct1=rand()%(n-1)+1;
-                coord_fruct2=rand()%(n-1)+1;
+                //componente[lungime_sarpe].x=aux1;
+                //componente[lungime_sarpe].y=aux2;
+
+                coord_fruct1=rand()%(n-1)+2;
+                coord_fruct2=rand()%(n-1)+2;
             }
              harta_update();
              harta_afisare();
