@@ -9,7 +9,6 @@
 using namespace std;
 
 fstream tabel_scoruri("tabel_scoruri.txt");
-
 struct sarpe
 {
     int x,y;
@@ -82,6 +81,9 @@ void harta_afisare()
 }
 int main()
 {
+    tabel_scoruri.open("tabel_scoruri.txt");
+tabel_scoruri.close();
+
     char joc_nou[10]="JOC NOU",tabel[10]="TABEL",iesire[10]="IESIRE";
     unsigned short pozitie=0,directie=0;
     cout<<"  >"<<joc_nou<<"<  "<<endl;
@@ -230,8 +232,8 @@ while(1)if(kbhit())
 
                 scor++;
 
-                //componente[lungime_sarpe].x=aux1;
-                //componente[lungime_sarpe].y=aux2;
+                componente[lungime_sarpe].x=aux1;
+                componente[lungime_sarpe].y=aux2;
 
                 coord_fruct1=rand()%(n-2)+2;
                 coord_fruct2=rand()%(n-2)+2;
@@ -243,6 +245,8 @@ while(1)if(kbhit())
 
             bool salveaza=true;
 
+            tabel_scoruri.open("tabel_scoruri.txt",ios::app);
+
             system("cls");
 
             cout<<"Doresti sa salvezi scorul?:"<<endl;
@@ -252,9 +256,6 @@ while(1)if(kbhit())
 
             while(ok)
             {
-            int timer=20;
-            while(timer){if(kbhit())if(getch()==122)ok=false;timer--;Sleep(20);}
-
             switch(getch())
             {
                 case 97:
@@ -280,13 +281,15 @@ while(1)if(kbhit())
 
                 break;
             }
+                case 122:
+                    ok=false;
+                    break;
             }
             }
              system("cls");
 
             if(salveaza)
             {
-                tabel_scoruri.open("tabel_scoruri.txt",ios::app);
 
                 cout<<"Nume jucator:";
                 char nume[20];
