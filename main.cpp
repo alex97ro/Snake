@@ -5,7 +5,11 @@
 #include <cstdlib>
 #include <stdio.h>
 #include <ctime>
+#include <fstream>
 using namespace std;
+
+fstream tabel_scoruri("tabel_scoruri.txt");
+
 struct sarpe
 {
     int x,y;
@@ -145,6 +149,7 @@ while(1)if(kbhit())
             break;
 
            case 122:
+               system("cls");
             switch(pozitie)
             {
 
@@ -235,15 +240,83 @@ while(1)if(kbhit())
              harta_afisare();
              Sleep(72);
             }
+
+            bool salveaza=true;
+
             system("cls");
 
+            cout<<"Doresti sa salvezi scorul?:"<<endl;
+            cout<<">DA<   NU";
+
+            bool ok=true;
+
+            while(ok)
+            {
+            int timer=20;
+            while(timer){if(kbhit())if(getch()==122)ok=false;timer--;Sleep(20);}
+
+            switch(getch())
+            {
+                case 97:
+                    {
+                    system("cls");
+
+                cout<<"Doresti sa salvezi scorul?:"<<endl;
+                cout<<">DA<   NU";
+
+                salveaza=true;
+
+                break;
+            }
+                case 100:
+                    {
+
+                    system("cls");
+
+                cout<<"Doresti sa salvezi scorul?:"<<endl;
+                cout<<"DA   >NU<";
+
+                salveaza=false;
+
+                break;
+            }
+            }
+            }
+             system("cls");
+
+            if(salveaza)
+            {
+                tabel_scoruri.open("tabel_scoruri.txt",ios::app);
+
+                cout<<"Nume jucator:";
+                char nume[20];
+                cin>>nume;
+
+                tabel_scoruri<<nume<<":"<<scor<<endl;
+
+                tabel_scoruri.close();
+
+            }
+
+            system("cls");
             cout<<"  >"<<joc_nou<<"<  "<<endl;
             cout<<"   "<<tabel<<"   "<<endl;
             cout<<"   "<<iesire<<"   ";
 
             break;
             }
-case 1:break;
+
+     case 1:
+         char nume_scor[40];
+         tabel_scoruri.open("tabel_scoruri.txt");
+         while(tabel_scoruri>>nume_scor)
+         {
+             cout<<nume_scor<<endl;
+             strcpy(nume_scor,"");
+             tabel_scoruri.get();
+         }
+         tabel_scoruri.close();
+    break;
 case 2:return 0;
 break;
 }
