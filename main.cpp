@@ -2,8 +2,9 @@
 #include <stdlib.h>
 #include <conio.h>
 #include <windows.h>
-#include <stdlib.h>
+#include <cstdlib>
 #include <stdio.h>
+#include <ctime>
 using namespace std;
 struct sarpe
 {
@@ -45,7 +46,7 @@ void muta_componentele(int x,int y)
 {
     if(harta[x][y]=='o')joc_in_desfasurare=false;
     int i;
-    for(i=n;i>1;i--)
+    for(i=lungime_sarpe;i>1;i--)
     {
         componente[i].x=componente[i-1].x;
         componente[i].y=componente[i-1].y;
@@ -148,7 +149,7 @@ while(1)if(kbhit())
             {
 
         case 0:
-
+          {
             joc_in_desfasurare=true;
 
             directie=0;
@@ -157,10 +158,13 @@ while(1)if(kbhit())
 
             bool fruct_mancat=false;
 
-            coord_fruct1=rand()%(n-1)+1;
-            coord_fruct2=rand()%(n-1)+1;
+            srand(unsigned(time(0)));
+
+            coord_fruct1=rand()%(n-2)+2;
+            coord_fruct2=rand()%(n-2)+2;
 
             harta_init();
+
             while(joc_in_desfasurare)
             {
                 int aux1=componente[lungime_sarpe].x,aux2=componente[lungime_sarpe].y;
@@ -173,6 +177,7 @@ while(1)if(kbhit())
 	Position.X = 0;
 	Position.Y = 0;
 	SetConsoleCursorPosition(hOut, Position);
+
                 if(kbhit())
                 switch(getch())
                 {
@@ -223,18 +228,26 @@ while(1)if(kbhit())
                 //componente[lungime_sarpe].x=aux1;
                 //componente[lungime_sarpe].y=aux2;
 
-                coord_fruct1=rand()%(n-1)+2;
-                coord_fruct2=rand()%(n-1)+2;
+                coord_fruct1=rand()%(n-2)+2;
+                coord_fruct2=rand()%(n-2)+2;
             }
              harta_update();
              harta_afisare();
-             Sleep(70);
+             Sleep(72);
             }
             system("cls");
-            break;
 
+            cout<<"  >"<<joc_nou<<"<  "<<endl;
+            cout<<"   "<<tabel<<"   "<<endl;
+            cout<<"   "<<iesire<<"   ";
+
+            break;
+            }
+case 1:break;
+case 2:return 0;
+break;
 }
             }
-return 0;
+//return 0;
 }
 
