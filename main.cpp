@@ -9,13 +9,18 @@
 using namespace std;
 
 fstream tabel_scoruri("tabel_scoruri.txt");
+void seteaza_culoarea(unsigned short culoare)
+{
+    HANDLE hcon=GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hcon,culoare);
+}
 struct sarpe
 {
     int x,y;
 
 }componente[100];
 char harta[100][100];
-int n=20,lungime_sarpe,coord_fruct1,coord_fruct2,scor;
+int n=22,lungime_sarpe,coord_fruct1,coord_fruct2,scor;
 bool joc_in_desfasurare;
 void harta_init()
 {
@@ -32,7 +37,7 @@ void harta_init()
         for(j=2;j<n;j++)
        harta[i][j]=' ';
 
-       harta[4][4]='o';
+       harta[4][4]='O';
        harta[4][5]='o';
        harta[4][6]='o';
 
@@ -63,7 +68,8 @@ void harta_update()
     for(i=2;i<n;i++)
         for(j=2;j<n;j++)
        harta[i][j]=' ';
-       for(i=1;i<=lungime_sarpe;i++)
+       harta[componente[1].x][componente[1].y]='O';
+       for(i=2;i<=lungime_sarpe;i++)
         harta[componente[i].x][componente[i].y]='o';
         harta[coord_fruct1][coord_fruct2]='$';
 }
@@ -73,9 +79,29 @@ void harta_afisare()
     for(i=1;i<=n;i++)
     {
         for(j=1;j<=n;j++)
+        {
+            switch(harta[i][j])
+            {
+                default:
+                seteaza_culoarea(15); break;
+
+                case 'O':
+                seteaza_culoarea(34); break;
+
+                case 'o':
+                seteaza_culoarea(6); break;
+
+                case '$':
+                seteaza_culoarea(10); break;
+
+                case '*':
+                seteaza_culoarea(102); break;
+            }
             cout<<harta[i][j];
+        }
         cout<<endl;
     }
+    seteaza_culoarea(15);
     cout<<"scor:"<<scor<<" || "<<"lungime:"<<lungime_sarpe;
 
 }
@@ -240,7 +266,7 @@ while(1)if(kbhit())
             }
              harta_update();
              harta_afisare();
-             Sleep(72);
+             Sleep(50);
             }
 
             bool salveaza=true;
@@ -319,7 +345,9 @@ while(1)if(kbhit())
              tabel_scoruri.get();
          }
          tabel_scoruri.close();
-    break;
+         cout<<">MENIU<";
+         if(getch()==122)
+            break;
 case 2:return 0;
 break;
 }
