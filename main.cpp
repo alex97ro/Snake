@@ -20,8 +20,8 @@ struct sarpe
 
 }componente[100];
 char harta[100][100];
-int n=22,lungime_sarpe,coord_fruct1,coord_fruct2,scor;
-bool joc_in_desfasurare;
+int n=22,lungime_sarpe,coord_fruct1,coord_fruct2,scor,vieti,coord_viata1,coord_viata2;
+bool joc_in_desfasurare,viata_colectata;
 void harta_init()
 {
     int i,j;
@@ -38,8 +38,8 @@ void harta_init()
        harta[i][j]=' ';
 
        harta[4][4]='O';
-       harta[4][5]='o';
-       harta[4][6]='o';
+       harta[4][5]=char(254);
+       harta[4][6]=char(254);
 
        lungime_sarpe=3;
 
@@ -52,7 +52,17 @@ void harta_init()
 }
 void muta_componentele(int x,int y)
 {
-    if(harta[x][y]=='o')joc_in_desfasurare=false;
+    if(harta[x][y]==char(254))
+    {
+        vieti--;
+        if(vieti==0)joc_in_desfasurare=false;
+    }
+    if(scor%15==0&&scor!=0)if(harta[x][y]==char(3))
+    {
+        vieti++;
+        scor++;
+        viata_colectata=true;
+    }
     int i;
     for(i=lungime_sarpe;i>1;i--)
     {
@@ -70,8 +80,9 @@ void harta_update()
        harta[i][j]=' ';
        harta[componente[1].x][componente[1].y]='O';
        for(i=2;i<=lungime_sarpe;i++)
-        harta[componente[i].x][componente[i].y]='o';
+        harta[componente[i].x][componente[i].y]=char(254);
         harta[coord_fruct1][coord_fruct2]='$';
+        if(scor%15==0&&scor!=0&&viata_colectata==false)harta[coord_viata1][coord_viata2]=char(3);
 }
 void harta_afisare()
 {
@@ -88,21 +99,24 @@ void harta_afisare()
                 case 'O':
                 seteaza_culoarea(34); break;
 
-                case 'o':
-                seteaza_culoarea(6); break;
+                case char(254):
+                seteaza_culoarea(2); break;
 
                 case '$':
                 seteaza_culoarea(10); break;
 
                 case '*':
                 seteaza_culoarea(102); break;
+
+                case char(3):
+                seteaza_culoarea(12); break;
             }
             cout<<harta[i][j];
         }
         cout<<endl;
     }
     seteaza_culoarea(15);
-    cout<<"scor:"<<scor<<" || "<<"lungime:"<<lungime_sarpe;
+    cout<<"scor:"<<scor<<" || "<<"vieti:"<<vieti;
 
 }
 int main()
@@ -189,12 +203,25 @@ while(1)if(kbhit())
 
             scor=0;
 
+            vieti=2;
+
             bool fruct_mancat=false;
 
             srand(unsigned(time(0)));
 
+            do
+                {
+                coord_viata1=rand()%(n-2)+2;
+                coord_viata2=rand()%(n-2)+2;
+                }
+                while(harta[coord_viata1][coord_viata2]==char(254)||harta[coord_viata1][coord_viata2]=='O');
+
+            do
+                {
             coord_fruct1=rand()%(n-2)+2;
             coord_fruct2=rand()%(n-2)+2;
+                }
+                while(harta[coord_fruct1][coord_fruct2]==char(254)||harta[coord_fruct1][coord_fruct2]=='O');
 
             harta_init();
 
@@ -252,6 +279,18 @@ while(1)if(kbhit())
                     else muta_componentele(componente[1].x+1,componente[1].y);
                     break;
                 }
+
+                if(viata_colectata==true&&scor%15==0)
+                {
+                    viata_colectata=false;
+                    do
+                {
+                coord_viata1=rand()%(n-2)+2;
+                coord_viata2=rand()%(n-2)+2;
+                }
+                while(harta[coord_viata1][coord_viata2]==char(254)||harta[coord_viata1][coord_viata2]=='O');
+                }
+
             if(componente[1].x==coord_fruct1&&componente[1].y==coord_fruct2)
             {
                 lungime_sarpe++;
@@ -260,9 +299,12 @@ while(1)if(kbhit())
 
                 componente[lungime_sarpe].x=aux1;
                 componente[lungime_sarpe].y=aux2;
-
+            do
+                {
                 coord_fruct1=rand()%(n-2)+2;
                 coord_fruct2=rand()%(n-2)+2;
+                }
+                while(harta[coord_fruct1][coord_fruct2]==char(254)||harta[coord_fruct1][coord_fruct2]=='O');
             }
              harta_update();
              harta_afisare();
