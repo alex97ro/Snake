@@ -203,7 +203,7 @@ while(1)if(kbhit())
 
             scor=0;
 
-            vieti=2;
+            vieti=1;
 
             bool fruct_mancat=false;
 
@@ -378,6 +378,12 @@ while(1)if(kbhit())
             }
 
      case 1:
+         {
+         unsigned short buton=0;
+         bool ok=true;
+         while(ok)
+            {
+                system("cls");
          char nume_scor[40];
          tabel_scoruri.open("tabel_scoruri.txt");
          while(tabel_scoruri>>nume_scor)
@@ -387,9 +393,35 @@ while(1)if(kbhit())
              tabel_scoruri.get();
          }
          tabel_scoruri.close();
-         cout<<">MENIU<";
-         if(getch()==122)
+         if(buton==0)
+           cout<<endl<<">MENIU<   STERGE SCORURILE";
+         else
+           cout<<endl<<"MENIU   >STERGE SCORURILE<";
+
+             switch(getch())
+             {
+             case 97:
+                 buton=0; break;
+             case 100:
+                 buton=1; break;
+             case 122:
+                ok=false;
+                if(buton==1)
+          {
+           tabel_scoruri.open("tabel_scoruri.txt", std::ofstream::out | std::ofstream::trunc);
+           tabel_scoruri.close();
+          }
+          break;
+            }
+          }
+          system("cls");
+
+          cout<<"   "<<joc_nou<<"   "<<endl;
+            cout<<"  >"<<tabel<<"<  "<<endl;
+            cout<<"   "<<iesire<<"   ";
+
             break;
+            }
 case 2:return 0;
 break;
 }
