@@ -1,5 +1,4 @@
-doc:51
-alex:4
-keed:36
-alexut:100
-alexutz\:20
+alex:18
+alex:45
+alex:1
+alex:67

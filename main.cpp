@@ -1,3 +1,4 @@
+#define _WIN32_WINNT 0x0502
 #include <iostream>
 #include <stdlib.h>
 #include <conio.h>
@@ -121,6 +122,7 @@ void harta_afisare()
 }
 int main()
 {
+
     tabel_scoruri.open("tabel_scoruri.txt");
 tabel_scoruri.close();
 
@@ -130,7 +132,11 @@ tabel_scoruri.close();
     cout<<"   "<<tabel<<"   "<<endl;
     cout<<"   "<<iesire<<"   ";
 
-while(1)if(kbhit())
+while(1)
+{
+    HWND hwnd = GetConsoleWindow();
+if( hwnd != NULL ){ MoveWindow(hwnd ,500,200 ,210,340 ,TRUE); }
+    if(kbhit())
         switch (getch())
             {
 
@@ -227,6 +233,9 @@ while(1)if(kbhit())
 
             while(joc_in_desfasurare)
             {
+                HWND hwnd = GetConsoleWindow();
+if( hwnd != NULL ){ MoveWindow(hwnd ,500,200 ,210,340 ,TRUE); }
+
                 int aux1=componente[lungime_sarpe].x,aux2=componente[lungime_sarpe].y;
                 //system("cls");
                 HANDLE hOut;
@@ -383,6 +392,8 @@ while(1)if(kbhit())
          bool ok=true;
          while(ok)
             {
+                HWND hwnd = GetConsoleWindow();
+if( hwnd != NULL ){ MoveWindow(hwnd ,500,200 ,260,370 ,TRUE); }
                 system("cls");
          char nume_scor[40];
          tabel_scoruri.open("tabel_scoruri.txt");
@@ -427,5 +438,6 @@ break;
 }
             }
 //return 0;
+}
 }
 
