@@ -1,3 +1,4 @@
-aaa:5
-alex:14
-aaa:8
+alexut:48
+mihai:42
+andrei:23
+alex:48

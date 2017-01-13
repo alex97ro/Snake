@@ -19,9 +19,9 @@ struct sarpe
 {
     int x,y;
 
-}componente[100];
+}componente[200];
 char harta[100][100];
-int n=22,lungime_sarpe,coord_fruct1,coord_fruct2,scor,vieti,coord_viata1,coord_viata2;
+int n=22,lungime_sarpe,coord_fruct1,coord_fruct2,scor,vieti,coord_viata1,coord_viata2,contor;
 bool joc_in_desfasurare,viata_colectata;
 void harta_init()
 {
@@ -101,7 +101,7 @@ void harta_afisare()
                 seteaza_culoarea(34); break;
 
                 case char(254):
-                seteaza_culoarea(2); break;
+                    seteaza_culoarea(2); break;
 
                 case '$':
                 seteaza_culoarea(10); break;
@@ -204,6 +204,8 @@ if( hwnd != NULL ){ MoveWindow(hwnd ,500,200 ,210,340 ,TRUE); }
         case 0:
           {
             joc_in_desfasurare=true;
+
+            contor=2;
 
             directie=0;
 
